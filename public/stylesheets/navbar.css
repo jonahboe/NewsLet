@@ -65,11 +65,12 @@
 }
 
 .search-bar form input {
+    width: calc(100% - 30px);
+    height: 2.5rem;
     text-align: center;
     outline: none;
     border-radius: 1.25rem;
-    border: none;
-    width: calc(100% - 30px);
+
 }
 .search-bar form button {
     text-align: center;
