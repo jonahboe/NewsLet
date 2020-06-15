@@ -70,7 +70,7 @@
     text-align: center;
     outline: none;
     border-radius: 1.25rem;
-
+    border: none;
 }
 .search-bar form button {
     text-align: center;
