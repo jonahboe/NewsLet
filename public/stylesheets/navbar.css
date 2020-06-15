@@ -13,12 +13,14 @@
 }
 
 .topnav-right {
+    height: 37px;
     float: right;
-
 }
 
-.topnav-right button {
-    border: none;
+.topnav-right form {
+    display: inline-block;
+    margin-bottom: 0;
+
 }
 
 .topnav a {

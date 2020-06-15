@@ -17,12 +17,18 @@ html(lang="en")
 
     .topnav#navbar
       .tab-area
-        a.active(href="javascript:void(0)") Feed
-        a(href="javascript:void(0)") Saved
-        a(href="javascript:void(0)") Posts
+        a(class=(activeTab === 'news' ? 'active' : ''), href='/') News
+        if isLoggedIn
+          a(class=(activeTab === 'saved' ? 'active' : ''), href='/saved-articles') Saved
+          a(class=(activeTab === 'post' ? 'active' : ''), href='/my-posts') Post
         .topnav-right
           a(onclick="toggleSearch()") Search
-          a Login
+          if isLoggedIn
+            form(action="/logout", method="POST")
+              a(onclick="this.parentNode.submit();") Logout
+          else
+            form(action="/login", method="POST")
+              a(onclick="this.parentNode.submit();") Login
 
       .search-area#searchBar
         .search-bar
