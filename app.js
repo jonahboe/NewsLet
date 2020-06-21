@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
-
 var app = express();
 
 // Set up connection to Heroku
@@ -37,8 +34,8 @@ const MONGODB_URL = process.env.MONGODB_URL || MONGODB_URI;
 const PORT = process.env.PORT || 5000;
 
 // Route setup. You can implement more in the future!
-const index = require('./routes/index');
 const user = require('./routes/user');
+const auth = require('./routes/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,9 +48,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/user', userRouter);
-
 // for mongoose
 app.use(
     session({
@@ -64,45 +58,37 @@ app.use(
     })
 );
 
+// Check if the current user has a session
+const User = require('./models/user');
+app.use((req, res, next) => {
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
+        .then(user => {
+            req.user = user;
+            next();
+        })
+        .catch(err => console.log(err));
+});
+
 // Get the server going
 mongoose
     .connect(
         MONGODB_URL, options
     )
     .then(result => {
-        // Check if the current user has a session
-        const User = require('./models/user');
-        app.use((req, res, next) => {
-            if (!req.session.user) {
-                return next();
-            }
-            User.findById(req.session.user._id)
-                .then(user => {
-                    req.user = user;
-                    next();
-                })
-                .catch(err => console.log(err));
-        });
 
         // Run our website
         app.use(express.static(path.join(__dirname, 'public')))
             .set('views', path.join(__dirname, 'views'))
-            // For view engine as ejs
-            //.set('view engine', 'ejs')
-            // For view engine as Pug
-            .set('view engine', 'pug') // For view engine as PUG.
-            // For view engine as hbs (Handlebars)
-            //.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'})) // For handlebars
-            //.set('view engine', 'hbs')
+            .set('view engine', 'pug')
+
             .use(bodyParser({extended: true})) // For parsing the body of a POST
 
-            .use('/', index)
-            .use('/user', user)
+            .use('/auth', auth)
+            .use('/', user)
 
-            .get('/', (req, res, next) => {
-                // This is the primary index, always handled last.
-                res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
-            })
             .use(function(req, res, next) {
                 next(createError(404));
             })

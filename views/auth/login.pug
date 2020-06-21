@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/forms.css')
+    h2.form-title Please log in
+    .form-block
+        p.message #{message}
+        form(action="/auth/login", method="POST")
+            label(for="email") Email:
+            input(type="text", name="email")#email
+            label(for="password") Password:
+            input(type="password", name="password")#password
+            button.btn(type="submit") Log In
+        div
+            a.btn(type="submit", href="/auth/signup") Create Account
+        p.error #{errorMessage}

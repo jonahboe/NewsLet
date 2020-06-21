@@ -35,6 +35,7 @@
 .topnav a:hover {
     background-color: #767676;
     color: white;
+    cursor: pointer;
 }
 
 .topnav a.active {

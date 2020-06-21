@@ -1,0 +1,18 @@
+.form-title {
+    margin-left: 2rem;
+}
+
+.form-block {
+    margin: 0 2rem;
+    padding: 4rem 5rem;
+    background-color: #cccccc;
+    border-radius: 10px;
+}
+
+.form-block form input {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    width: 100%;
+}
