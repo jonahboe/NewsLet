@@ -67,6 +67,7 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.postSignUp = (req, res, next) => {
+    const name = req.body.user_name;
     const email = req.body.email;
     const password = req.body.password;
     const errors = validationResult(req);
@@ -78,31 +79,44 @@ exports.postSignUp = (req, res, next) => {
             errorMessage: errors.array()[0].msg
         });
     }
+    // Check email
     User.findOne({email: email})
         .then(userDoc => {
             if (userDoc) {
-                return res.status(442).render('auth/signup', {
+                return res.status(442).render('auth/login', {
                     title: 'Sign Up',
                     activeTab: 'auth',
-                    errorMessage: "User email already exists. Please login."
+                    message: "User email already exists. Please login."
                 });
             }
-            return bcrypt
-                .hash(password, 12)
-                .then(hashedPassword => {
-                    const user = new User({
-                        email: email,
-                        password: hashedPassword,
-                    });
-                    return user.save();
-                })
-                .then(result => {
-                    res.render('auth/login', {
-                        title: 'Log In',
-                        activeTab: 'auth',
-                        isLoggedIn: req.session.isLoggedIn,
-                        message: "Account created successfully. Please log in."
-                    });
+            // Check username
+            User.findOne({name:name})
+                .then(userDoc2 => {
+                    if (userDoc2) {
+                        return res.status(442).render('auth/signup', {
+                            title: 'Sign Up',
+                            activeTab: 'auth',
+                            errorMessage: "User name already exists. Please choose another."
+                        });
+                    }
+                    return bcrypt
+                        .hash(password, 12)
+                        .then(hashedPassword => {
+                            const user = new User({
+                                name: name,
+                                email: email,
+                                password: hashedPassword,
+                            });
+                            return user.save();
+                        })
+                        .then(result => {
+                            res.render('auth/login', {
+                                title: 'Log In',
+                                activeTab: 'auth',
+                                isLoggedIn: req.session.isLoggedIn,
+                                message: "Account created successfully. Please log in."
+                            });
+                        });
                 });
         })
         .catch(err => {

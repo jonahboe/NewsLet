@@ -2,9 +2,11 @@ extends ../layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/forms.css')
-    h2.form-title Sign Up
+    h2.form-title Sign Up:
     .form-block
         form(action="/auth/signup", method="POST", novalidate)
+            label(for="user_name") User Name:
+            input(type="text", name="user_name")#user_name
             label(for="email") Email:
             input(type="email", name="email")#email
             label(for="password") Password:

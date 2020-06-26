@@ -2,9 +2,9 @@ extends ../layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/forms.css')
-    h2.form-title Please log in
+    h2.form-title Log In:
     .form-block
-        p.message #{message}
+        p #{message}
         form(action="/auth/login", method="POST")
             label(for="email") Email:
             input(type="text", name="email")#email
