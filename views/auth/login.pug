@@ -5,7 +5,7 @@ block content
     h2.form-title Log In:
     .form-block
         p #{message}
-        form(action="/auth/login", method="POST")
+        form(action="/auth/login", method="POST", novalidate)
             label(for="email") Email:
             input(type="text", name="email")#email
             label(for="password") Password:

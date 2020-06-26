@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/forms.css')
+    h2.form-title Create Post:
+    .form-block
+        form(action="/create-post", method="POST", novalidate)
+            label(for="title") Title:
+            p.char-count 0 / 25
+            input(type="text", name="title")#title
+
+            label(for="summary") Summary:
+            p.char-count 0 / 50
+            input(type="text", name="summary")#summary
+
+            label(for="article") Article:
+            p.char-count 0 / 250
+            textarea(name="article")#article
+
+            label(for="image-area") Image:
+            div#image-area
+            div
+                a.btn.btn-sub(onclick="uploadImage()")
+                    span.glyphicon.glyphicon-picture
+                    |  Upload Image
+
+            label(for="tags") Tags:
+            div
+                ul#tags
+                input(type="text", name="summary")#input-tag
+                a.btn.btn-sub(onclick="addTag()")
+                    span.glyphicon.glyphicon-plus
+
+            button.btn(type="submit") Post
+
+    script
+        include ../../public/javascripts/post.js

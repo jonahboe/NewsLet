@@ -1,3 +1,11 @@
+#input-tag {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
 .form-title {
     margin-left: 2rem;
 }
@@ -15,6 +23,50 @@
     border-radius: 5px;
     margin-bottom: 2rem;
     width: 100%;
+}
+
+.form-block form textarea {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 10rem;
+    resize: none;
+}
+
+.form-block form img {
+    margin-bottom: 1rem;
+}
+
+.form-block form div ul {
+    padding: 0;
+}
+
+.form-block form div ul li {
+    padding: 0.2rem .4rem;
+    margin-right: 0.3rem;
+    font: inherit;
+    font-size: 1.2rem;
+    color: white;
+    background: #737373;
+    cursor: default;
+    display: inline;
+}
+
+.glyphicon-remove-circle {
+    margin-left: .5rem;
+}
+
+.char-count {
+    margin-bottom: 0;
+}
+
+.btn-sub {
+    font: inherit;
+    font-size: 1.1rem;
+    padding: .2rem .4rem;
+    margin-bottom: 2rem
 }
 
 .error {

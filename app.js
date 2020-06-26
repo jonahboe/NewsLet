@@ -99,7 +99,9 @@ mongoose
 
                 // render the error page
                 res.status(err.status || 500);
-                res.render('error');
+                res.render('error', {
+                    isLoggedIn: req.session.isLoggedIn
+                });
             })
             .listen(PORT, () => console.log(`Listening on ${ PORT }`));
     })

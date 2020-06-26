@@ -25,9 +25,22 @@ exports.getMyPosts = (req, res, next) => {
     });
 };
 
+exports.getCreatePost = (req, res, next) => {
+    res.render('user/create-post', {
+        title: 'Create Post',
+        activeTab: 'post',
+        showSearch: false,
+        isLoggedIn: req.session.isLoggedIn,
+    });
+};
+
 exports.postSearch = (req, res, next) => {
     res.render('user/news', {
         title: 'NewsLet',
         activeTab: 'news',
     });
+};
+
+exports.postCreatePost = (req, res, next) => {
+
 };

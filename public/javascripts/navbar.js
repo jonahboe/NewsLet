@@ -21,5 +21,5 @@ function toggleSearch() {
         default:
             document.getElementById("searchBar").hidden = true;
             break;
-  }
+    }
 }
