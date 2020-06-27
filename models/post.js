@@ -15,9 +15,17 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    imageURL: {
+    author: {
+        type: String,
+        required: true
+    },
+    image: {
         type: String,
         required: false
+    },
+    date: {
+        type: String,
+        required: true
     },
     tags: [],
     userId: {

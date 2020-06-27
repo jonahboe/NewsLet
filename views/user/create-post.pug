@@ -4,7 +4,8 @@ block content
     link(rel='stylesheet', href='/stylesheets/forms.css')
     h2.form-title Create Post:
     .form-block
-        form(action="/create-post", method="POST", novalidate)
+        form(action="/create-post", method="POST", novalidate, enctype="multipart/form-data")
+            input(type="data", name="date", style="display: none")#date
             label(for="title") Title:
             p.char-count 0 / 25
             input(type="text", name="title")#title
@@ -20,14 +21,16 @@ block content
             label(for="image-area") Image:
             div#image-area
             div
-                a.btn.btn-sub(onclick="uploadImage()")
+                input(type="file", name="image", style="display: none")#file-button
+                a.btn.btn-sub(onclick="uploadFilePressed()")#custom-file-button
                     span.glyphicon.glyphicon-picture
                     |  Upload Image
 
             label(for="tags") Tags:
             div
                 ul#tags
-                input(type="text", name="summary")#input-tag
+                input(type="text", name="tagString", style="display: none")#tag-string
+                input(type="text")#input-tag
                 a.btn.btn-sub(onclick="addTag()")
                     span.glyphicon.glyphicon-plus
 

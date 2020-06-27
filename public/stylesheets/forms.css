@@ -1,9 +1,6 @@
 #input-tag {
-    border: 1px solid #a1a1a1;
     font: inherit;
-    border-radius: 0;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
 }
 
 .form-title {
@@ -44,10 +41,9 @@
 }
 
 .form-block form div ul li {
-    padding: 0.2rem .4rem;
+    padding: 0.4rem .8rem;
     margin-right: 0.3rem;
     font: inherit;
-    font-size: 1.2rem;
     color: white;
     background: #737373;
     cursor: default;
@@ -67,8 +63,4 @@
     font-size: 1.1rem;
     padding: .2rem .4rem;
     margin-bottom: 2rem
-}
-
-.error {
-    color: red;
 }

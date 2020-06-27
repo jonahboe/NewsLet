@@ -1,5 +1,28 @@
 extends ../layout
 
 block content
-    h3 You have no posts!
+    link(rel='stylesheet', href='/stylesheets/posts.css')
+
+    if posts.length === 0
+        h3 You have no posts!
+        hr
+
+    .post-list
+        each article in posts
+            .post
+                h4 #{article.title}
+                .post-split
+                    img(src=article.image)
+                    .post-text
+                        p
+                            b #{article.summary}
+                        p
+                            b Date:
+                            |  #{article.date}
+
+                        form(action="/delete-post", method="POST")
+                            input(type="hidden", value=article._id, name="postId")
+                            button.btn-warning(type="submit") Delete
+            hr
+
     a.btn(type="submit", href="/create-post") Add New Post

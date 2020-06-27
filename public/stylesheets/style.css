@@ -25,3 +25,25 @@ main#content {
     color: white;
     background: #0087ff;
 }
+
+.btn-warning {
+    padding: 0.25rem 1rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    font: inherit;
+    border: 1px solid red;
+    color: red;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-warning:hover {
+    color: white;
+    background: red;
+}
+
+.warning {
+    color: red;
+}
+

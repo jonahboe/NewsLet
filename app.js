@@ -1,11 +1,11 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-const bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const multer = require('multer');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var app = express();
+const app = express();
 
 // Set up connection to Heroku
 const cors = require('cors');
@@ -84,7 +84,19 @@ mongoose
             .set('views', path.join(__dirname, 'views'))
             .set('view engine', 'pug')
 
-            .use(bodyParser({extended: true})) // For parsing the body of a POST
+            .use(
+                multer({
+                    storage: multer.diskStorage({
+                        destination: (req, file, cb) => {
+                            cb(null, 'public/images/posts');
+                        },
+                        filename: (req, file, cb) => {
+                            cb(null, new Date().toISOString() + '-' + file.originalname);
+                        }
+                    })
+                })
+                .single('image')
+            )
 
             .use('/auth', auth)
             .use('/', user)
