@@ -50,8 +50,8 @@ exports.getMyPosts = (req, res, next) => {
     Post.find({ userId: req.session.user._id })
         .then(posts => {
             res.render('user/post', {
-                title: 'Post',
-                activeTab: 'post',
+                title: 'Posts',
+                activeTab: 'posts',
                 showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
                 posts: posts,

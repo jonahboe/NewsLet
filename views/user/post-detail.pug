@@ -1,4 +1,18 @@
 extends ../layout
 
 block content
-    h1 #{post.title}
+    link(rel='stylesheet', href='/stylesheets/posts.css')
+
+    .post-detail
+        .post-detail_header-top
+                img(src=post.image)
+                h1 #{post.title}
+
+        .post-detail_header-bottom
+            p.author By: #{post.author}
+            p #{post.date}
+
+        hr
+
+        .post-detail_article
+            p #{post.article}

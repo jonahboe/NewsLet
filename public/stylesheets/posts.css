@@ -24,3 +24,26 @@
 .post:hover {
     background-color: #f2f2f2;
 }
+
+.post-detail {
+    padding: 0 1rem;
+}
+
+.post-detail_header-top {
+    margin: auto;
+    text-align: center;
+}
+
+.post-detail_header-top img {
+    max-height: 30rem;
+    max-width: 100%;
+}
+
+.post-detail_header-bottom p {
+    margin-bottom: 0;
+}
+
+.post-detail_article {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+}

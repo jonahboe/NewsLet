@@ -20,7 +20,7 @@ html(lang="en")
                 a(class=(activeTab === 'news' ? 'active' : ''), href='/') News
                 if isLoggedIn
                     a(class=(activeTab === 'saved' ? 'active' : ''), href='/saved-posts') Saved
-                    a(class=(activeTab === 'post' ? 'active' : ''), href='/my-posts') Post
+                    a(class=(activeTab === 'posts' ? 'active' : ''), href='/my-posts') Posts
                 .topnav-right
                     if showSearch
                         a(onclick="toggleSearch()") Search
