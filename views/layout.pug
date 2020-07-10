@@ -19,7 +19,7 @@ html(lang="en")
             .tab-area
                 a(class=(activeTab === 'news' ? 'active' : ''), href='/') News
                 if isLoggedIn
-                    a(class=(activeTab === 'saved' ? 'active' : ''), href='/saved-articles') Saved
+                    a(class=(activeTab === 'saved' ? 'active' : ''), href='/saved-posts') Saved
                     a(class=(activeTab === 'post' ? 'active' : ''), href='/my-posts') Post
                 .topnav-right
                     if showSearch

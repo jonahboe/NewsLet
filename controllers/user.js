@@ -16,13 +16,34 @@ exports.getNews = (req, res, next) => {
         });
 };
 
-exports.getSavedArticles = (req, res, next) => {
-    res.render('user/saved', {
-        title: 'Saved',
-        activeTab: 'saved',
-        showSearch: true,
-        isLoggedIn: req.session.isLoggedIn,
-    });
+exports.getPostDetail = (req, res, next) => {
+    const postId = req.params.postId;
+    Post.findById(postId)
+        .then(post => {
+            res.render('user/post-detail', {
+                title: post.title,
+                isLoggedIn: req.session.isLoggedIn,
+                post: post,
+            });
+        })
+        .catch(err => console.log(err));
+};
+
+exports.getSavedPosts = (req, res, next) => {
+    req.user
+        .populate('saved.items.postId')
+        .execPopulate()
+        .then(user => {
+            const posts = user.saved.items;
+            res.render('user/saved', {
+                title: 'Saved',
+                activeTab: 'saved',
+                showSearch: true,
+                isLoggedIn: req.session.isLoggedIn,
+                posts: posts,
+            });
+        })
+        .catch(err => console.log(err));
 };
 
 exports.getMyPosts = (req, res, next) => {
@@ -98,6 +119,27 @@ exports.postDeletePost = (req, res, next) => {
             });
             post.remove();
             res.redirect('/my-posts');
+        })
+        .catch(err => console.log(err));
+};
+
+exports.postSavePost = (req, res, next) => {
+    const postId = req.body.postId;
+    Post.findById(postId)
+        .then(post => {
+            return req.user.savePost(post);
+        })
+        .then(result => {
+            res.redirect('/saved-posts');
+        });
+};
+
+exports.postDeleteSaved = (req, res, next) => {
+    const postId = req.body.postId;
+    req.user
+        .deleteSaved(postId)
+        .then(result => {
+            res.redirect('/saved-posts');
         })
         .catch(err => console.log(err));
 };

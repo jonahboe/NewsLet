@@ -1,4 +1,32 @@
 extends ../layout
 
 block content
-    h3 You have no saved posts!
+    link(rel='stylesheet', href='/stylesheets/posts.css')
+
+    if posts.length === 0
+        h3 You have no saved posts!
+        hr
+
+    .post-list
+        each post in posts
+            .post(onclick='viewPostDetail("' + post.postId._id + '")')
+                h4 #{post.postId.title}
+                .post-split
+                    img(src=post.postId.image)
+                    .post-text
+                        p
+                            b #{post.postId.summary}
+                        p
+                            b Author:
+                            |  #{post.postId.author}
+                        p
+                            b Date:
+                            |  #{post.postId.date}
+
+                        form(action="/delete-saved", method="POST")
+                            input(type="hidden", value=post.postId._id, name="postId")
+                            button.btn-warning(type="submit") Delete
+            hr
+
+    script
+        include ../../public/javascripts/postDetail.js

@@ -3,21 +3,26 @@ extends ../layout
 block content
     link(rel='stylesheet', href='/stylesheets/posts.css')
     .post-list
-        each article in posts
-            .post
-                h4 #{article.title}
+        each post in posts
+            .post(onclick='viewPostDetail("' + post._id + '")')
+                h4 #{post.title}
                 .post-split
-                    img(src=article.image)
+                    img(src=post.image)
                     .post-text
                         p
-                            b #{article.summary}
+                            b #{post.summary}
                         p
                             b Author:
-                            |  #{article.author}
+                            |  #{post.author}
                         p
                             b Date:
-                            |  #{article.date}
+                            |  #{post.date}
 
-                        if isLoggedIn
-                            button.btn Save
+                        form(action="/save-post", method="POST")
+                            input(type="hidden", value=post._id, name="postId")
+                            if isLoggedIn
+                                button.btn(type="submit") Save
             hr
+
+    script
+        include ../../public/javascripts/postDetail.js

@@ -8,21 +8,24 @@ block content
         hr
 
     .post-list
-        each article in posts
-            .post
-                h4 #{article.title}
+        each post in posts
+            .post(onclick='viewPostDetail("' + post._id + '")')
+                h4 #{post.title}
                 .post-split
-                    img(src=article.image)
+                    img(src=post.image)
                     .post-text
                         p
-                            b #{article.summary}
+                            b #{post.summary}
                         p
                             b Date:
-                            |  #{article.date}
+                            |  #{post.date}
 
                         form(action="/delete-post", method="POST")
-                            input(type="hidden", value=article._id, name="postId")
+                            input(type="hidden", value=post._id, name="postId")
                             button.btn-warning(type="submit") Delete
             hr
 
     a.btn(type="submit", href="/create-post") Add New Post
+
+    script
+        include ../../public/javascripts/postDetail.js
