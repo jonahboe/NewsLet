@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="489b5689-bd15-424f-b2ff-9f8a0d07b3cb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.pug" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,7 +53,7 @@
         <counts>
           <entry key="Procfile" value="3" />
           <entry key="css" value="2781" />
-          <entry key="js" value="8792" />
+          <entry key="js" value="8798" />
           <entry key="json" value="14" />
           <entry key="pug" value="4601" />
           <entry key="www" value="4" />
@@ -67,7 +64,7 @@
           <entry key="CSS" value="2781" />
           <entry key="JSON" value="14" />
           <entry key="Jade" value="4601" />
-          <entry key="JavaScript" value="8796" />
+          <entry key="JavaScript" value="8802" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
@@ -78,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+            <state relative-caret-position="119">
+              <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -377,12 +374,12 @@
       <workItem from="1593230500069" duration="17206000" />
       <workItem from="1593653913529" duration="5000" />
       <workItem from="1593914597179" duration="6579000" />
-      <workItem from="1594409622424" duration="29445000" />
+      <workItem from="1594409622424" duration="29628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124223000" />
+    <option name="totallyTimeSpent" value="124406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -390,15 +387,15 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.17600964" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.17600964" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.22302905" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.22302905" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32987553" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.22095436" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.22095436" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39937758" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -642,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+        <state relative-caret-position="119">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
     </entry>

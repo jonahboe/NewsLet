@@ -1,7 +1,7 @@
 const Post = require('../models/post');
 
 exports.getNews = (req, res, next) => {
-    const search = req.query.search;
+    const search = req.query.search.toLowerCase();
     if (search !== undefined && search !== "") {
         let list = search.split(' ');
         Post.find({'tags': {$in: list}})
