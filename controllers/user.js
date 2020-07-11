@@ -1,9 +1,9 @@
 const Post = require('../models/post');
 
 exports.getNews = (req, res, next) => {
-    const search = req.query.search.toLowerCase();
+    const search = req.query.search;
     if (search !== undefined && search !== "") {
-        let list = search.split(' ');
+        let list = search.toLowerCase().split(' ');
         Post.find({'tags': {$in: list}})
             .then(posts => {
                 res.render('user/news', {
