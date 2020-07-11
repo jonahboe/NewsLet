@@ -8,7 +8,7 @@ window.onload = function() {
 
 let title = document.getElementById("title");
 let titleCount = document.getElementById("title-count");
-title.addEventListener("keyup", event => {
+title.addEventListener("keyup", (e) => {
     let count = title.value.length;
     titleCount.innerHTML = count + " / 30";
     if (count > 30)
@@ -20,7 +20,7 @@ title.addEventListener("keyup", event => {
 
 let summary = document.getElementById("summary");
 let summaryCount = document.getElementById("summary-count");
-summary.addEventListener("keyup", event => {
+summary.addEventListener("keyup", (e) => {
     let count = summary.value.length;
     summaryCount.innerHTML = count + " / 50";
     if (count > 50)
@@ -32,7 +32,7 @@ summary.addEventListener("keyup", event => {
 
 let article = document.getElementById("article");
 let articleCount = document.getElementById("article-count");
-article.addEventListener("keyup", event => {
+article.addEventListener("keyup", (e) => {
     let count = article.value.length;
     articleCount.innerHTML = count + " / 500";
     if (count > 500)
@@ -42,6 +42,18 @@ article.addEventListener("keyup", event => {
     updateWarnings()
 });
 
+let imageIsLoaded = false;
+let loadPreview = function(e) {
+    let reader = new FileReader();
+    reader.onload = function(){
+        let image = document.getElementById('image');
+        image.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    imageIsLoaded = true;
+    updateWarnings();
+};
+
 let warning1 = document.getElementById("warning1");
 warning1.hidden = false;
 let warning2 = document.getElementById("warning2");
@@ -50,7 +62,7 @@ let postButton = document.getElementById("post-button");
 postButton.style.display = "none";
 function updateWarnings() {
     let showButton = true;
-    if (title.value.length === 0 || summary.value.length === 0 || article.value.length === 0) {
+    if (title.value.length === 0 || summary.value.length === 0 || article.value.length === 0 || !imageIsLoaded) {
         warning1.hidden = false;
         showButton = false;
     }

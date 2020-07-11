@@ -39,6 +39,10 @@
     margin-bottom: 1rem;
 }
 
+.form_img-upload {
+    max-width: 100%;
+}
+
 .form-block form div ul {
     padding: 0;
 }

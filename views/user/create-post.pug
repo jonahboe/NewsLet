@@ -2,6 +2,7 @@ extends ../layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/forms.css')
+
     h2.form-title Create Post:
     .form-block
         form(action="/create-post", method="POST", novalidate, enctype="multipart/form-data")
@@ -20,8 +21,9 @@ block content
 
             label(for="image-area") Image:
             div#image-area
+                img.form_img-upload(src="")#image
             div
-                input(type="file", name="image", style="display: none")#file-button
+                input(type="file", name="image", style="display: none", accept="image/*", onchange="loadPreview(event)")#file-button
                 a.btn.btn-sub(onclick="uploadFilePressed()")#custom-file-button
                     span.glyphicon.glyphicon-picture
                     |  Upload Image
