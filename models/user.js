@@ -61,4 +61,12 @@ userSchema.methods.deleteSaved = function(postId) {
     return this.save();
 };
 
+userSchema.methods.deleteSavedBySaveId = function(postId) {
+    const updatedSavedPosts = this.saved.items.filter(item => {
+        return item._id.toString() !== postId.toString();
+    });
+    this.saved.items = updatedSavedPosts;
+    return this.save();
+};
+
 module.exports = mongoose.model('User', userSchema);

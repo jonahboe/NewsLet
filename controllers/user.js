@@ -34,13 +34,23 @@ exports.getSavedPosts = (req, res, next) => {
         .populate('saved.items.postId')
         .execPopulate()
         .then(user => {
-            const posts = user.saved.items.reverse();
+            const posts = user.saved.items;
+            // Remove old posts from saved list
+            let filtered = posts.filter(post => {
+                if (post.postId === null) {
+                    req.user
+                        .deleteSavedBySaveId(post._id)
+                        .catch(err => console.log(err));
+                    return false;
+                }
+                return true;
+            });
             res.render('user/saved', {
                 title: 'Saved',
                 activeTab: 'saved',
                 showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
-                posts: posts,
+                posts: filtered.reverse(),
             });
         })
         .catch(err => console.log(err));
