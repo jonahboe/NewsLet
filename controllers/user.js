@@ -1,19 +1,38 @@
 const Post = require('../models/post');
 
 exports.getNews = (req, res, next) => {
-    Post.find()
-        .then(posts => {
-            res.render('user/news', {
-                title: 'NewsLet',
-                activeTab: 'news',
-                showSearch: true,
-                isLoggedIn: req.session.isLoggedIn,
-                posts: posts.reverse(),
+    const search = req.query.search;
+    if (search !== undefined && search !== "") {
+        let list = search.split(' ');
+        Post.find({'tags': {$in: list}})
+            .then(posts => {
+                res.render('user/news', {
+                    title: 'NewsLet',
+                    activeTab: 'news',
+                    showSearch: true,
+                    isLoggedIn: req.session.isLoggedIn,
+                    posts: posts.reverse(),
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    }
+    else {
+        Post.find()
+            .then(posts => {
+                res.render('user/news', {
+                    title: 'NewsLet',
+                    activeTab: 'news',
+                    showSearch: true,
+                    isLoggedIn: req.session.isLoggedIn,
+                    posts: posts.reverse(),
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 };
 
 exports.getPostDetail = (req, res, next) => {
@@ -35,8 +54,7 @@ exports.getSavedPosts = (req, res, next) => {
         .execPopulate()
         .then(user => {
             const posts = user.saved.items;
-            // Remove old posts from saved list
-            let filtered = posts.filter(post => {
+            const filtered = posts.filter(post => {
                 if (post.postId === null) {
                     req.user
                         .deleteSavedBySaveId(post._id)
@@ -48,7 +66,6 @@ exports.getSavedPosts = (req, res, next) => {
             res.render('user/saved', {
                 title: 'Saved',
                 activeTab: 'saved',
-                showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
                 posts: filtered.reverse(),
             });
@@ -62,7 +79,6 @@ exports.getMyPosts = (req, res, next) => {
             res.render('user/post', {
                 title: 'Posts',
                 activeTab: 'posts',
-                showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
                 posts: posts.reverse(),
             });
