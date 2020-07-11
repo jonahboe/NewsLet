@@ -3,6 +3,10 @@
     margin-bottom: 1rem;
 }
 
+#custom-file-button {
+    height: 2.25rem;
+}
+
 .form-title {
     margin-left: 2rem;
 }

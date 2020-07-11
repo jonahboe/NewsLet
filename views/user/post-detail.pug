@@ -16,3 +16,8 @@ block content
 
         .post-detail_article
             p #{post.article}
+
+        form(action="/save-post", method="POST")
+            input(type="hidden", value=post._id, name="postId")
+            if isLoggedIn
+                button.btn(type="submit") Save

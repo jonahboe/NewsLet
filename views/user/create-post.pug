@@ -7,15 +7,15 @@ block content
         form(action="/create-post", method="POST", novalidate, enctype="multipart/form-data")
             input(type="data", name="date", style="display: none")#date
             label(for="title") Title:
-            p.char-count 0 / 25
+            p.char-count#title-count 0 / 30
             input(type="text", name="title")#title
 
             label(for="summary") Summary:
-            p.char-count 0 / 50
+            p.char-count#summary-count 0 / 50
             input(type="text", name="summary")#summary
 
             label(for="article") Article:
-            p.char-count 0 / 250
+            p.char-count#article-count 0 / 500
             textarea(name="article")#article
 
             label(for="image-area") Image:
@@ -34,7 +34,9 @@ block content
                 a.btn.btn-sub(onclick="addTag()")
                     span.glyphicon.glyphicon-plus
 
-            button.btn(type="submit") Post
+            button.btn(type="submit")#post-button Post
+            p.warning#warning1 All fields must be filled out.
+            p.warning#warning2 Fields must not exceed permitted lengths.
 
     script
         include ../../public/javascripts/post.js

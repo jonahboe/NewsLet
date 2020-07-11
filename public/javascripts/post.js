@@ -1,5 +1,3 @@
-let tagString = [];
-
 window.onload = function() {
     n = new Date();
     y = n.getFullYear();
@@ -8,6 +6,71 @@ window.onload = function() {
     document.getElementById("date").value = m + "/" + d + "/" + y;
 };
 
+let title = document.getElementById("title");
+let titleCount = document.getElementById("title-count");
+title.addEventListener("keyup", event => {
+    let count = title.value.length;
+    titleCount.innerHTML = count + " / 30";
+    if (count > 30)
+        titleCount.style.color = "red";
+    else
+        titleCount.style.color = "#383838";
+    updateWarnings();
+});
+
+let summary = document.getElementById("summary");
+let summaryCount = document.getElementById("summary-count");
+summary.addEventListener("keyup", event => {
+    let count = summary.value.length;
+    summaryCount.innerHTML = count + " / 50";
+    if (count > 50)
+        summaryCount.style.color = "red";
+    else
+        summaryCount.style.color = "#383838";
+    updateWarnings()
+});
+
+let article = document.getElementById("article");
+let articleCount = document.getElementById("article-count");
+article.addEventListener("keyup", event => {
+    let count = article.value.length;
+    articleCount.innerHTML = count + " / 500";
+    if (count > 500)
+        articleCount.style.color = "red";
+    else
+        articleCount.style.color = "#383838";
+    updateWarnings()
+});
+
+let warning1 = document.getElementById("warning1");
+warning1.hidden = false;
+let warning2 = document.getElementById("warning2");
+warning2.hidden = true;
+let postButton = document.getElementById("post-button");
+postButton.style.display = "none";
+function updateWarnings() {
+    let showButton = true;
+    if (title.value.length === 0 || summary.value.length === 0 || article.value.length === 0) {
+        warning1.hidden = false;
+        showButton = false;
+    }
+    else
+        warning1.hidden = true;
+
+    if (title.value.length > 30 || summary.value.length > 50 || article.value.length > 500) {
+        warning2.hidden = false;
+        showButton = false;
+    }
+    else
+        warning2.hidden = true;
+
+    if (showButton === true)
+        postButton.style.display = "block";
+    else
+        postButton.style.display = "none";
+}
+
+let tagString = [];
 function addTag() {
     let tagList = document.getElementById("tags");
     let tag = document.getElementById("input-tag").value.toLowerCase();
