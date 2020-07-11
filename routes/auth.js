@@ -10,8 +10,7 @@ router.get('/signup', authController.getSignUp);
 router.get('/logout', authController.getLogout);
 
 router.post('/login', authController.postLogin);
-router.post(
-    '/signup',
+router.post('/signup',
     check('user_name').isAlphanumeric().withMessage("Username must be alphanumeric with no spaces."),
     check('user_name').custom((value, { req }) => {
        if (value.search(" ") !== -1)
