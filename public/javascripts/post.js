@@ -10,8 +10,8 @@ let title = document.getElementById("title");
 let titleCount = document.getElementById("title-count");
 title.addEventListener("keyup", (e) => {
     let count = title.value.length;
-    titleCount.innerHTML = count + " / 30";
-    if (count > 30)
+    titleCount.innerHTML = count + " / 50";
+    if (count > 50)
         titleCount.style.color = "red";
     else
         titleCount.style.color = "#383838";
@@ -22,8 +22,8 @@ let summary = document.getElementById("summary");
 let summaryCount = document.getElementById("summary-count");
 summary.addEventListener("keyup", (e) => {
     let count = summary.value.length;
-    summaryCount.innerHTML = count + " / 50";
-    if (count > 50)
+    summaryCount.innerHTML = count + " / 100";
+    if (count > 100)
         summaryCount.style.color = "red";
     else
         summaryCount.style.color = "#383838";
@@ -34,8 +34,8 @@ let article = document.getElementById("article");
 let articleCount = document.getElementById("article-count");
 article.addEventListener("keyup", (e) => {
     let count = article.value.length;
-    articleCount.innerHTML = count + " / 500";
-    if (count > 500)
+    articleCount.innerHTML = count + " / 1000";
+    if (count > 1000)
         articleCount.style.color = "red";
     else
         articleCount.style.color = "#383838";
@@ -69,7 +69,7 @@ function updateWarnings() {
     else
         warning1.hidden = true;
 
-    if (title.value.length > 30 || summary.value.length > 50 || article.value.length > 500) {
+    if (title.value.length > 50 || summary.value.length > 100 || article.value.length > 1000) {
         warning2.hidden = false;
         showButton = false;
     }

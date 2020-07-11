@@ -8,7 +8,7 @@ exports.getNews = (req, res, next) => {
                 activeTab: 'news',
                 showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
-                posts: posts,
+                posts: posts.reverse(),
             });
         })
         .catch(err => {
@@ -34,7 +34,7 @@ exports.getSavedPosts = (req, res, next) => {
         .populate('saved.items.postId')
         .execPopulate()
         .then(user => {
-            const posts = user.saved.items;
+            const posts = user.saved.items.reverse();
             res.render('user/saved', {
                 title: 'Saved',
                 activeTab: 'saved',
@@ -54,7 +54,7 @@ exports.getMyPosts = (req, res, next) => {
                 activeTab: 'posts',
                 showSearch: true,
                 isLoggedIn: req.session.isLoggedIn,
-                posts: posts,
+                posts: posts.reverse(),
             });
         })
         .catch(err => {
@@ -72,10 +72,7 @@ exports.getCreatePost = (req, res, next) => {
 };
 
 exports.postSearch = (req, res, next) => {
-    res.render('user/news', {
-        title: 'NewsLet',
-        activeTab: 'news',
-    });
+    res.redirect('/')
 };
 
 exports.postCreatePost = (req, res, next) => {
